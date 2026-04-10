@@ -1,0 +1,57 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: localdb
+      MYSQL_USER: azure
+      MYSQL_PASSWORD: "devpass"
+      MYSQL_ROOT_PASSWORD: "rootpass"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - mysql
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8000
+
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: localdb
+      DB_USERNAME: azure
+      DB_PASSWORD: devpass
+
+      MAIL_MAILER: smtp
+      MAIL_HOST: smtp.mailtrap.io
+      MAIL_PORT: "2525"
+      MAIL_USERNAME: ""
+      MAIL_PASSWORD: ""
+      MAIL_ENCRYPTION: ""
+      MAIL_FROM_NAME: "Banco ProCredit"
+    ports:
+      - "8000:8000"
+    command: sh -lc "php artisan serve --host=0.0.0.0 --port=8000"
+
+  composer:
+    build:
+      context: .
+      dockerfile: docker/composer/Dockerfile
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
