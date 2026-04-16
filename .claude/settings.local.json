@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php artisan:*)",
+      "Bash(where php:*)",
+      "Read(//c/xampp/php/**)",
+      "Read(//c/php/**)",
+      "Bash(\"C:/xampp/php/php.exe\" artisan:*)",
+      "Bash(where composer:*)",
+      "Read(//c/ProgramData/ComposerSetup/bin/**)"
+    ]
+  }
+}
