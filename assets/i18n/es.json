@@ -1,4 +1,25 @@
 {
+  "euro":{
+    "title":"Cotizador EUR / USD",
+    "conversion":"Conversión",
+    "invertir":"Invertir EUR y USD",
+    "monto_ingresado":"Ingresa el valor",
+    "tasa":"Tasa",
+    "aplicar_isd":"Aplicar ISD",
+    "isd_tooltip":"El ISD corresponde al 5% del valor de la transferencia. Este cálculo considera la excepción vigente de hasta 3 Salarios Básicos Unificados (SBU), aplicable dentro de un período de 15 días calendario. El valor mostrado es referencial y puede variar al momento de la transacción.",
+    "nota_comision":"La comisión puede variar según el tipo de cuenta y se encuentra sujeta al tarifario vigente.",
+    "nota_valores":"Los valores mostrados son referenciales. La cotización, comisiones e impuestos aplicables pueden variar al momento de realizar la transacción.",
+    "monto_calculado":"Monto calculado",
+    "comision":"Comisión",
+    "monto_transferir":"Total a transferir",
+    "conversion_label":"Conversión",
+    "solicitar":"Solicitar",
+    "disclaimer":"La solicitud del formulario se recibe hasta las 14:00.",
+    "descargar":"¡Descargue el formulario aquí!",
+    "notas_title":"¿Cómo realizar la transferencia?",
+    "nota_1":"Descargar y completar el formulario correspondiente (link del formulario).",
+    "nota_2":"Enviar el formulario firmado en formato PDF al correo: asesoria@bancoprocredit.com.ec, de lunes a viernes hasta las 14h00."
+  },
   "vivienda":{
     "title":"Simulador Crédito de Vivienda",
     "matLabelTranslated": "Crédito de Vivienda",

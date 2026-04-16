@@ -1,4 +1,25 @@
 {
+  "euro":{
+    "title":"EUR / USD Currency Exchange",
+    "conversion":"Conversion",
+    "invertir":"Swap EUR and USD",
+    "monto_ingresado":"Enter amount",
+    "tasa":"Rate",
+    "aplicar_isd":"Apply ISD",
+    "isd_tooltip":"ISD corresponds to 5% of the transfer amount. This calculation considers the current exemption of up to 3 Basic Unified Salaries (SBU), applicable within a 15-calendar-day period. The amount shown is referential and may vary at the time of the transaction.",
+    "nota_comision":"The commission may vary depending on the account type and is subject to the current tariff.",
+    "nota_valores":"The values shown are referential. The exchange rate, commissions, and applicable taxes may vary at the time of the transaction.",
+    "monto_calculado":"Calculated amount",
+    "comision":"Commission",
+    "monto_transferir":"Total to transfer",
+    "conversion_label":"Conversion",
+    "solicitar":"Request",
+    "disclaimer":"The form request is received until 14:00.",
+    "descargar":"Download the form here!",
+    "notas_title":"How to make the transfer?",
+    "nota_1":"Download and complete the corresponding form (form link).",
+    "nota_2":"Send the signed form in PDF format to: asesoria@bancoprocredit.com.ec, Monday to Friday by 14:00."
+  },
   "vivienda":{
     "title":"Housing loan Simulator",
     "matLabelTranslated": "Housing loan",
