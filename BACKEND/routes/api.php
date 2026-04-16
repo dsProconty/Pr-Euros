@@ -28,6 +28,7 @@ Route::post('login', [AuthController::class, 'login']);
 | usados por front sin login.
 */
 Route::get('tasas-cambio', [ExchangeController::class, 'obtener_tasas']);
+Route::get('euro-comision', [ExchangeController::class, 'obtener_comision']);
 Route::get('flex-save-rates', [FlexSaveRateController::class, 'index']);
 Route::get('flexSaving', [SavingController::class, 'get_flex']);
 Route::get('dpfSaving', [SavingController::class, 'get_dpf']);
@@ -44,6 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
     */
     Route::middleware('role:1,3')->group(function () {
         Route::post('tasas-cambio', [ExchangeController::class, 'guardar_tasas']);
+        Route::post('euro-comision', [ExchangeController::class, 'guardar_comision']);
     });
 
     /*

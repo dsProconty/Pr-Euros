@@ -19,6 +19,11 @@ class ExchangeRateSeeder extends Seeder
             ['description' => '1.09']
         );
 
+        Tax::updateOrCreate(
+            ['tax' => 'EURO_COMISION'],
+            ['description' => '29']
+        );
+
         Tax::whereIn('tax', ['EUR_USD', 'USD_EUR'])->delete();
     }
 }

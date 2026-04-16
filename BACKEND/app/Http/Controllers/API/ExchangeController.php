@@ -39,5 +39,40 @@ class ExchangeController extends Controller
             'simulador_euros' => true,
         ], 200);
     }
+
+    public function obtener_comision()
+    {
+        $fila = Tax::where('tax', 'EURO_COMISION')->first();
+
+        $comision = ($fila && is_numeric($fila->description))
+            ? (float) $fila->description
+            : 29.0;
+
+        return response()->json([
+            'comision' => $comision,
+        ], 200);
+    }
+
+    public function guardar_comision(Request $request)
+    {
+        $comision = $request->input('comision');
+
+        if (!is_numeric($comision)) {
+            return response()->json([
+                'message' => 'comision debe ser numerica.',
+                'success' => false,
+            ], 422);
+        }
+
+        Tax::updateOrCreate(
+            ['tax' => 'EURO_COMISION'],
+            ['description' => (string) $comision]
+        );
+
+        return response()->json([
+            'message' => 'Comisión EUR guardada correctamente.',
+            'success' => true,
+        ], 200);
+    }
 }
 
