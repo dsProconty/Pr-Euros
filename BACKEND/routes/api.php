@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Responder a preflight CORS (OPTIONS) en todas las rutas de la API
+Route::options('/{any}', function () {
+    return response('', 204);
+})->where('any', '.*');
+
 Route::post('login', [AuthController::class, 'login']);
 
 /*
