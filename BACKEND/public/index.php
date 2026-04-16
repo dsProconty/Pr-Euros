@@ -5,6 +5,21 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+// CORS headers — antes de que Laravel procese cualquier cosa
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '*';
+$allowed = ['https://pr-euros.vercel.app'];
+$allowOrigin = in_array($origin, $allowed) ? $origin : $allowed[0];
+
+header('Access-Control-Allow-Origin: ' . $allowOrigin);
+header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, Accept');
+header('Access-Control-Max-Age: 86400');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit();
+}
+
 /*
 |--------------------------------------------------------------------------
 | Check If Application Is Under Maintenance
