@@ -17,8 +17,13 @@
     "disclaimer":"La solicitud del formulario se recibe hasta las 14:00.",
     "descargar":"¡Descargue el formulario aquí!",
     "notas_title":"¿Cómo realizar la transferencia?",
-    "nota_1":"Descargar y completar el formulario correspondiente (link del formulario).",
-    "nota_2":"Enviar el formulario firmado en formato PDF al correo: asesoria@bancoprocredit.com.ec, de lunes a viernes hasta las 14h00."
+    "nota_1":"Descargar y completar el formulario correspondiente.",
+    "nota_2":"Enviar el formulario firmado en formato PDF al correo: asesoria@bancoprocredit.com.ec, de lunes a viernes hasta las 14h00.",
+    "info_title":"Información importante",
+    "info_tasa":"La tasa mostrada en el simulador se actualiza diariamente y está sujeta a cambios.",
+    "info_contacto":"Para información adicional sobre este servicio, contáctanos a través de los siguientes medios:",
+    "info_telefono":"Teléfono: +593 2 211 0000 ext. 56108",
+    "info_correo":"Correo: sh.divisas@bancoprocredit.com.ec"
   },
   "vivienda":{
     "title":"Simulador Crédito de Vivienda",

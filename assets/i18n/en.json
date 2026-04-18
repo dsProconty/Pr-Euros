@@ -17,8 +17,13 @@
     "disclaimer":"The form request is received until 14:00.",
     "descargar":"Download the form here!",
     "notas_title":"How to make the transfer?",
-    "nota_1":"Download and complete the corresponding form (form link).",
-    "nota_2":"Send the signed form in PDF format to: asesoria@bancoprocredit.com.ec, Monday to Friday by 14:00."
+    "nota_1":"Download and complete the corresponding form.",
+    "nota_2":"Send the signed form in PDF format to: asesoria@bancoprocredit.com.ec, Monday to Friday by 14:00.",
+    "info_title":"Important information",
+    "info_tasa":"The rate shown in the simulator is updated daily and is subject to change.",
+    "info_contacto":"For additional information about this service, contact us through the following channels:",
+    "info_telefono":"Phone: +593 2 211 0000 ext. 56108",
+    "info_correo":"Email: sh.divisas@bancoprocredit.com.ec"
   },
   "vivienda":{
     "title":"Housing loan Simulator",
