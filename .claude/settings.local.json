@@ -7,7 +7,8 @@
       "Read(//c/php/**)",
       "Bash(\"C:/xampp/php/php.exe\" artisan:*)",
       "Bash(where composer:*)",
-      "Read(//c/ProgramData/ComposerSetup/bin/**)"
+      "Read(//c/ProgramData/ComposerSetup/bin/**)",
+      "Bash(cp \"/root/.claude/uploads/d9dcfd4b-3a40-5b19-b1c1-7f28eb7432ed/5dad9299-ExchangeController.php\" /home/user/Pr-Euros/BACKEND/app/Http/Controllers/API/ExchangeController.php)"
     ]
   }
 }
