@@ -13,9 +13,15 @@ class ExchangeController extends Controller
         $tax = new Tax;
         $result = $tax->obtener_tasas_cambio();
 
+        $filaComision = Tax::where('tax', 'EURO_COMISION')->first();
+        $comision = ($filaComision && is_numeric($filaComision->description))
+            ? (float) $filaComision->description
+            : 29.0;
+
         return response()->json(array_merge([
             'simulador_euros' => true,
             'nota' => 'Una sola tasa de referencia para EUR/USD y USD/EUR en el simulador; no es tipo de cambio oficial.',
+            'comision' => $comision,
         ], $result), 200);
     }
 
