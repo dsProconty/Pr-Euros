@@ -21,6 +21,8 @@
     "nota_2":"Send the signed form in PDF format to: asesoria@bancoprocredit.com.ec, Monday to Friday by 14:00.",
     "info_title":"Important information",
     "info_tasa":"The rate shown in the simulator is updated daily and is subject to change.",
+    "tasa_error":"Could not get the exchange rate. Please try again.",
+    "reintentar":"Retry",
     "info_contacto":"For additional information about this service, contact us through the following channels:",
     "info_telefono":"Phone: +593 2 211 0000 ext. 56108",
     "info_correo":"Email: sh.divisas@bancoprocredit.com.ec"

@@ -21,6 +21,8 @@
     "nota_2":"Enviar el formulario firmado en formato PDF al correo: asesoria@bancoprocredit.com.ec, de lunes a viernes hasta las 14h00.",
     "info_title":"Información importante",
     "info_tasa":"La tasa mostrada en el simulador se actualiza diariamente y está sujeta a cambios.",
+    "tasa_error":"No se pudo obtener la tasa. Intente nuevamente.",
+    "reintentar":"Reintentar",
     "info_contacto":"Para información adicional sobre este servicio, contáctanos a través de los siguientes medios:",
     "info_telefono":"Teléfono: +593 2 211 0000 ext. 56108",
     "info_correo":"Correo: sh.divisas@bancoprocredit.com.ec"
