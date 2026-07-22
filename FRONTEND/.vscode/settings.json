@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/5ad65b31-6241-47ec-be59-e571f915475a/resourceGroups/SimuladoresProcredit/providers/Microsoft.Web/sites/simuladores",
+    "appService.deploySubpath": "dist\\simulators"
+}

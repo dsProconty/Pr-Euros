@@ -1,0 +1,572 @@
+/* ══════════════════════════════════════════
+   PAGE / BRAND
+══════════════════════════════════════════ */
+.euro-sim-page {
+  min-height: 100%;
+  padding-bottom: 2rem;
+  background: #fff;
+}
+.euro-top-bar { padding-top: 0; }
+.euro-brand-row {
+  padding-top: 0.75rem;
+  padding-bottom: 0.5rem;
+  background: #fff;
+}
+.euro-logo { width: 40%; max-width: 380px; height: auto; display: block; }
+
+.euro-sim-container { max-width: 980px; margin-top: 1rem; background: #fff; }
+
+.euro-card {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  background: transparent;
+  padding: 0.65rem;
+  gap: 0.65rem;
+}
+
+/* ══════════════════════════════════════════
+   PANEL IZQUIERDO — estructura completa
+══════════════════════════════════════════ */
+.ec-left-wrapper {
+  flex: 1 1 50%;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ec-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #e7e7e7;
+  border-radius: 0 0 14px 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  min-height: 340px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* ── Barra roja superior ── */
+.ec-conv-bar {
+  flex-shrink: 0;
+  background: #d91d27;
+  padding: 28px 28px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.ec-conv-lbl {
+  flex: 0 0 auto;
+  color: #fff;
+  font-weight: 400;
+  font-size: 24px;
+  white-space: nowrap;
+}
+.ec-pills {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* Pills: rectángulos blancos, texto rojo, borde rojo */
+.ec-pill {
+  background: #fff;
+  color: #d91d27;
+  font-weight: 400;
+  font-size: 26px;
+  padding: 12px 32px;
+  border-radius: 4px;
+  border: 2px solid #d91d27;
+  line-height: 1.2;
+  display: inline-block;
+  letter-spacing: 0.02em;
+}
+.ec-arrow {
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  cursor: default;
+  user-select: none;
+  line-height: 1;
+  padding: 0 2px;
+}
+.ec-arrow:hover { opacity: 0.75; }
+
+/* ── Cuerpo gris: campos ── */
+.ec-body {
+  flex-shrink: 0;
+  padding: 28px 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Tabla 2 columnas: labels | inputs */
+.ec-table {
+  border-collapse: collapse;
+  width: auto;
+}
+.ec-table tr + tr td { padding-top: 10px; }
+
+.ec-td-lbl {
+  font-weight: 500;
+  font-size: 16px;
+  color: #231f20;
+  text-align: right;
+  padding-right: 10px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.ec-td-field {
+  vertical-align: middle;
+  padding: 0;
+}
+/* Input-wrap: flex, badge pegado al input */
+.ec-input-wrap {
+  display: inline-flex;
+  align-items: stretch;
+}
+/* Input numérico: caja blanca, ancho fijo */
+.ec-input {
+  width: 120px;
+  border: none;
+  background: #fff;
+  padding: 10px 12px;
+  font-size: 16px;
+  color: #231f20;
+  text-align: right;
+  box-sizing: border-box;
+  -moz-appearance: textfield;
+}
+.ec-input::-webkit-inner-spin-button,
+.ec-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.ec-input:focus { outline: 2px solid #d91d27; outline-offset: -2px; }
+
+/* Solo lectura (tasa) */
+.ec-readonly {
+  width: 120px;
+  border: none;
+  background: #fff;
+  padding: 10px 12px;
+  font-size: 16px;
+  color: #231f20;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+}
+
+/* Badges */
+.ec-badge {
+  font-weight: 700;
+  font-size: 14px;
+  width: 52px;
+  padding: 10px 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ec-badge-red  { background: #d91d27; color: #fff; }
+.ec-badge-gray { background: #b8b5b4; color: #231f20; }
+.ec-badge-sm   { width: 44px; padding: 6px 0; font-size: 12px; }
+
+/* Tasa: readonly más pequeño */
+.ec-readonly--sm {
+  width: 80px;
+  font-size: 14px;
+  padding: 6px 8px;
+}
+
+/* Error tasa */
+.ec-rate-err {
+  color: #d91d27;
+  font-size: 11px;
+  margin-top: -4px;
+}
+
+/* ── Fila ISD ── */
+.ec-isd-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 2px;
+}
+/* Checkbox cuadrado personalizado */
+.ec-cb {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #d91d27;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.ec-cb.ec-cb-on { background: #d91d27; border-color: #d91d27; }
+/* Marca de verificación (palomita) */
+.ec-cb-mark {
+  display: block;
+  width: 9px;
+  height: 6px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg) translateY(-1px);
+}
+.ec-isd-lbl {
+  font-weight: 500;
+  font-size: 13px;
+  color: #231f20;
+  cursor: pointer;
+}
+/* Ícono ⓘ de información */
+.ec-info-icon {
+  color: #4f4c4d;
+  font-size: 15px;
+  cursor: help;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ── Foto inferior ── */
+.ec-photo-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  min-height: 120px;
+}
+.ec-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ══════════════════════════════════════════
+   TOOLTIP ISD (Material override)
+══════════════════════════════════════════ */
+::ng-deep .ec-isd-tooltip {
+  background: #4f4c4d !important;
+  color: #fff !important;
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+  max-width: 260px !important;
+  padding: 8px 10px !important;
+  border-radius: 4px !important;
+  white-space: normal !important;
+}
+::ng-deep .ec-isd-tooltip .mat-tooltip {
+  background: #4f4c4d !important;
+}
+
+/* ══════════════════════════════════════════
+   PANEL DERECHO — rojo
+══════════════════════════════════════════ */
+.erp {
+  flex: 1 1 50%;
+  max-width: 50%;
+  position: relative;
+  background: #d91d27;
+  min-height: 400px;
+  display: flex;
+  align-items: stretch;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+/* Globe decorativo */
+.erp-globe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.65;
+  z-index: 0;
+}
+
+/* Contenido sobre el globe */
+.erp-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  flex: 1;
+  padding: 54px 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Tabla panel derecho ── */
+.erp-table {
+  border-collapse: collapse;
+  width: auto;
+  margin-bottom: 16px;
+}
+.erp-table tr + tr td { padding-top: 10px; }
+
+.erp-td-lbl {
+  color: #fff;
+  text-align: right;
+  padding-right: 12px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.erp-td-lbl--main { font-weight: 400; font-size: 17px; }
+.erp-td-lbl--sm   { font-weight: 500; font-size: 15px; }
+
+.erp-td-field {
+  vertical-align: middle;
+  padding: 0;
+}
+
+/* ── Value + badge ── */
+.erp-val-wrap {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: stretch;
+}
+.erp-val {
+  background: #fff;
+  color: #231f20;
+  font-weight: 600;
+  text-align: right;
+  border: none;
+  box-sizing: border-box;
+}
+.erp-val--main {
+  font-size: 16px;
+  padding: 8px 14px;
+  width: 120px;
+}
+.erp-val--sm {
+  font-size: 13px;
+  padding: 5px 10px;
+  width: 90px;
+}
+.erp-val--total {
+  font-size: 22px;
+  font-weight: 700;
+  padding: 8px 14px;
+  min-width: 140px;
+}
+
+/* Badges panel derecho */
+.erp-badge {
+  background: #b8b5b4;
+  color: #231f20;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+}
+/* Monto calculado — badge grande, misma altura que el valor */
+.erp-badge--main {
+  font-size: 14px;
+  min-width: 52px;
+  padding: 0 10px;
+}
+/* Comisión / ISD — badge pequeño */
+.erp-badge--sm {
+  font-size: 12px;
+  min-width: 40px;
+  padding: 0 8px;
+}
+/* Total */
+.erp-badge--lg {
+  font-size: 15px;
+  min-width: 52px;
+  padding: 0 12px;
+}
+
+/* Ícono ⓘ info — inline en filas sm */
+.erp-info {
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+  cursor: help;
+  flex-shrink: 0;
+  width: 24px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.erp-info--hidden {
+  width: 24px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+/* ── Sección Total — pegada al fondo con margin-top:auto ── */
+.erp-total-section {
+  margin-top: auto;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.erp-total-lbl {
+  color: #fff;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0;
+}
+.erp-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+.erp-val--total {
+  font-size: 24px;
+  font-weight: 700;
+  padding: 10px 16px;
+  min-width: 160px;
+}
+.erp-badge--lg {
+  font-size: 15px;
+  min-width: 52px;
+  padding: 0 12px;
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.erp-total-info {
+  color: rgba(255,255,255,0.85);
+  font-size: 18px;
+  cursor: help;
+  margin-left: 8px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Botón descargar ── */
+.erp-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+.erp-btn {
+  display: inline-block;
+  background: #fff;
+  color: #d91d27;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 7px 14px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: 2px solid #fff;
+  text-align: center;
+  white-space: normal;
+  max-width: 120px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.3;
+}
+.erp-btn:hover { background: transparent; color: #fff; text-decoration: none; }
+
+/* ══════════════════════════════════════════
+   NOTAS INFORMATIVAS
+══════════════════════════════════════════ */
+.ec-notas {
+  padding: 8px 0 16px;
+  max-width: 520px;
+}
+.ec-notas-title {
+  font-weight: 700;
+  color: #231f20;
+  font-size: 13px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #d91d27;
+  display: inline-block;
+}
+.ec-notas-item {
+  color: #4f4c4d;
+  font-size: 12px;
+  margin: 0 0 4px;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+
+/* Tablet apaisada y menor */
+@media (max-width: 991px) {
+  .euro-sim-container { max-width: 100%; margin-left: 0; margin-right: 0; }
+  .ec-conv-lbl { font-size: 15px; }
+  .ec-pill { font-size: 17px; padding: 8px 18px; }
+  .erp-total-lbl { font-size: 22px; }
+  .erp-val--total { font-size: 19px; min-width: 120px; }
+}
+
+/* Tablet retrato y móvil */
+@media (max-width: 767px) {
+  .euro-card { flex-wrap: wrap; gap: 0.75rem; }
+  .ec-left-wrapper,
+  .erp { flex: 1 1 100%; max-width: 100%; }
+
+  /* Panel izquierdo */
+  .ec-conv-bar { padding: 12px 14px; gap: 8px; }
+  .ec-conv-lbl { font-size: 14px; }
+  .ec-pill { font-size: 16px; padding: 7px 16px; }
+  .ec-body { padding: 16px 14px 12px; gap: 10px; }
+  .ec-td-lbl { font-size: 13px; padding-right: 8px; }
+  .ec-input { width: 90px; font-size: 13px; }
+  .ec-readonly { width: 60px; font-size: 13px; }
+  .ec-readonly--sm { width: 65px; font-size: 12px; padding: 5px 6px; }
+  .ec-badge { width: 38px; font-size: 11px; }
+  .ec-badge-sm { width: 34px; font-size: 10px; padding: 5px 0; }
+  .ec-photo-wrap { min-height: 120px; max-height: 150px; }
+
+  /* Panel derecho */
+  .erp-content { padding: 16px 14px 14px; }
+  .erp-td-lbl--main { font-size: 14px; }
+  .erp-td-lbl--sm   { font-size: 12px; }
+  .erp-val--main { font-size: 14px; width: 90px; padding: 6px 10px; }
+  .erp-val--sm   { font-size: 12px; width: 70px; padding: 4px 8px; }
+  .erp-badge--main { font-size: 12px; min-width: 40px; }
+  .erp-badge--sm   { font-size: 11px; min-width: 34px; }
+  .erp-total-lbl { font-size: 20px; }
+  .erp-val--total { font-size: 18px; min-width: 110px; padding: 7px 10px; }
+  .erp-badge--lg { min-width: 42px; font-size: 12px; }
+  .erp-btn { font-size: 10px; padding: 6px 12px; max-width: 110px; }
+}
+
+/* Móvil pequeño */
+@media (max-width: 480px) {
+  .euro-logo { width: 55%; }
+  .switcher-lang { margin-top: 5%; text-align: center; }
+  .ec-pill { font-size: 14px; padding: 6px 14px; }
+  .ec-td-lbl { font-size: 12px; }
+  .ec-input { width: 80px; font-size: 12px; }
+  .ec-readonly--sm { width: 58px; }
+  .erp-td-lbl--main { font-size: 13px; }
+  .erp-td-lbl--sm   { font-size: 11px; }
+  .erp-val--main { width: 80px; font-size: 13px; }
+  .erp-val--sm   { width: 60px; font-size: 11px; }
+  .erp-total-lbl { font-size: 18px; }
+  .erp-val--total { font-size: 16px; min-width: 100px; }
+  .ec-notas { max-width: 100%; }
+}

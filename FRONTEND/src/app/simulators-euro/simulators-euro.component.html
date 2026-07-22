@@ -1,0 +1,208 @@
+<div class="euro-sim-page">
+
+  <!-- FRANJA TOP -->
+  <div class="container">
+    <img src="../../assets/images/franja.png" width="100%" height="6" alt="">
+  </div>
+
+  <!-- HEADER: Logo + selector de idioma (igual que demás simuladores) -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-sm-6 col-md-6">
+        <a href="https://bancoprocredit.com.ec/">
+          <img src="../../assets/images/logo-procredit-new.png" class="euro-logo" alt="Banco ProCredit">
+        </a>
+      </div>
+      <div class="col-lg-3 switcher-lang">
+        <mat-form-field appearance="fill">
+          <mat-label *ngIf="isTranslated == false">
+            {{ 'general.espanol' | translate }}
+            <img src="../../assets/images/es.png" height="16" width="16" alt="es">
+          </mat-label>
+          <mat-label *ngIf="isTranslated == true">
+            {{ 'general.ingles' | translate }}
+            <img src="../../assets/images/en-us.png" height="16" width="16" alt="en">
+          </mat-label>
+          <mat-select>
+            <mat-option (click)="useLanguage('es')">
+              {{ 'general.espanol' | translate }}
+              <img src="../../assets/images/es.png" height="16" width="16" alt="es">
+            </mat-option>
+            <mat-option (click)="useLanguage('en')">
+              {{ 'general.ingles' | translate }}
+              <img src="../../assets/images/en-us.png" height="16" width="16" alt="en">
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="container euro-sim-container">
+    <div class="euro-card row no-gutters">
+
+      <!-- ══ PANEL IZQUIERDO ══ -->
+      <div class="col-lg-6 ec-left-wrapper">
+
+        <!-- Barra roja: Conversión (más ancha que el panel gris) -->
+        <div class="ec-conv-bar">
+          <span class="ec-conv-lbl">{{ 'euro.conversion' | translate }}:</span>
+          <div class="ec-pills">
+            <span class="ec-pill">{{ fromCurrency }}</span>
+            <span class="ec-arrow">&#8594;</span>
+            <span class="ec-pill">{{ toCurrency }}</span>
+          </div>
+        </div>
+
+        <!-- Panel gris -->
+        <div class="ec-left">
+
+        <!-- Cuerpo gris: campos -->
+        <div class="ec-body">
+
+          <table class="ec-table">
+            <!-- Monto ingresado -->
+            <tr>
+              <td class="ec-td-lbl">{{ 'euro.monto_ingresado' | translate }}:</td>
+              <td class="ec-td-field">
+                <div class="ec-input-wrap">
+                  <input class="ec-input" type="number" min="0" step="0.01"
+                    [(ngModel)]="amount" (ngModelChange)="sanitizeNumbers()">
+                  <span class="ec-badge ec-badge-red">{{ fromCurrency }}</span>
+                </div>
+              </td>
+            </tr>
+            <!-- Tasa -->
+            <tr>
+              <td class="ec-td-lbl">{{ 'euro.tasa' | translate }}:</td>
+              <td class="ec-td-field">
+                <div class="ec-input-wrap">
+                  <span class="ec-readonly ec-readonly--sm">{{ formatTruncated(conversionRate, 4) }}</span>
+                  <span class="ec-badge ec-badge-red ec-badge-sm">{{ toCurrency }}</span>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <small class="ec-rate-err" *ngIf="rateError">{{ rateError }}</small>
+
+          <!-- ISD -->
+          <div class="ec-isd-row">
+            <span class="ec-cb" [class.ec-cb-on]="applyIsd" (click)="applyIsd = !applyIsd">
+              <span *ngIf="applyIsd" class="ec-cb-mark"></span>
+            </span>
+            <span class="ec-isd-lbl" (click)="applyIsd = !applyIsd">{{ 'euro.aplicar_isd' | translate }}</span>
+            <span class="ec-info-icon"
+              [matTooltip]="'euro.isd_tooltip' | translate"
+              matTooltipPosition="right"
+              matTooltipClass="ec-isd-tooltip">&#9432;</span>
+          </div>
+
+        </div><!-- /ec-body -->
+
+        <!-- Foto inferior -->
+        <div class="ec-photo-wrap">
+          <img src="../../assets/images/eurcotizador.png" class="ec-photo" alt="">
+        </div>
+
+        </div><!-- /ec-left -->
+      </div><!-- /ec-left-wrapper -->
+
+      <!-- ══ PANEL DERECHO ══ -->
+      <div class="col-lg-6 erp">
+
+        <!-- Globe decorativo de fondo -->
+        <img src="../../assets/images/bancoMesa de trabajo 2 1.png" class="erp-globe" alt="">
+
+        <div class="erp-content">
+
+          <table class="erp-table">
+            <!-- Monto calculado -->
+            <tr>
+              <td class="erp-td-lbl erp-td-lbl--main">{{ 'euro.monto_calculado' | translate }}:</td>
+              <td class="erp-td-field">
+                <div class="erp-val-wrap">
+                  <span class="erp-val erp-val--main">{{ formatTruncated(calculatedAmount, 2) }}</span>
+                  <span class="erp-badge erp-badge--main">{{ toCurrency }}</span>
+                </div>
+              </td>
+            </tr>
+            <!-- Comisión -->
+            <tr>
+              <td class="erp-td-lbl erp-td-lbl--sm">{{ 'euro.comision' | translate }}:</td>
+              <td class="erp-td-field">
+                <div class="erp-val-wrap">
+                  <span class="erp-val erp-val--sm">{{ formatTruncated(commissionUsd, 2) }}</span>
+                  <span class="erp-badge erp-badge--sm">USD</span>
+                  <span class="erp-info"
+                    [matTooltip]="'euro.nota_comision' | translate"
+                    matTooltipPosition="right"
+                    matTooltipClass="ec-isd-tooltip">&#9432;</span>
+                </div>
+              </td>
+            </tr>
+            <!-- ISD -->
+            <tr>
+              <td class="erp-td-lbl erp-td-lbl--sm">ISD:</td>
+              <td class="erp-td-field">
+                <div class="erp-val-wrap">
+                  <span class="erp-val erp-val--sm">{{ formatTruncated(isdAmount, 2) }}</span>
+                  <span class="erp-badge erp-badge--sm">USD</span>
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Total a transferir -->
+          <div class="erp-total-section">
+            <p class="erp-total-lbl">{{ 'euro.monto_transferir' | translate }}:</p>
+            <div class="erp-total-row">
+              <div class="erp-val-wrap">
+                <span class="erp-val erp-val--total">{{ formatTruncated(totalToTransfer, 2) }}</span>
+                <span class="erp-badge erp-badge--lg">USD</span>
+              </div>
+              <span class="erp-total-info"
+                [matTooltip]="'euro.nota_valores' | translate"
+                matTooltipPosition="left"
+                matTooltipClass="ec-isd-tooltip">&#9432;</span>
+            </div>
+          </div>
+
+
+          <!-- Botón -->
+          <div class="erp-actions">
+            <a class="erp-btn"
+              href="https://www.bancoprocredit.com.ec/wp-content/uploads/2026/01/Formulario-de-Transferencias-Internacionales-Nov2025.pdf"
+              target="_blank" rel="noopener noreferrer">
+              {{ 'euro.descargar' | translate }}
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /euro-card -->
+
+    <div class="ec-notas">
+      <p class="ec-notas-title">{{ 'euro.notas_title' | translate }}</p>
+      <p class="ec-notas-item">1. {{ 'euro.nota_1' | translate }}</p>
+      <p class="ec-notas-item">2. {{ 'euro.nota_2' | translate }}</p>
+    </div>
+
+    <div class="ec-notas ec-info-section">
+      <p class="ec-notas-title">{{ 'euro.info_title' | translate }}</p>
+      <p class="ec-notas-item">{{ 'euro.info_tasa' | translate }}</p>
+    </div>
+
+    <div class="ec-notas ec-info-section">
+      <p class="ec-notas-title">{{ 'euro.info_contacto_title' | translate }}</p>
+      <p class="ec-notas-item">{{ 'euro.info_telefono' | translate }}</p>
+      <p class="ec-notas-item">{{ 'euro.info_correo' | translate }}</p>
+    </div>
+  </div>
+
+  <!-- FRANJA BOTTOM -->
+  <div class="container">
+    <img src="../../assets/images/franja.png" width="100%" height="6" alt="">
+  </div>
+
+</div>

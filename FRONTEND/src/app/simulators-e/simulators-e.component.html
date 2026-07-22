@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Source code generated using layoutit.com">
+  <meta name="author" content="LayoutIt!">
+  <meta name="robots" content="noindex">
+</head>
+<style>
+  .resized-image {
+    width: 40%;
+    height: auto; /* Esto mantiene la proporción original de la imagen */
+    max-width: 100%; /* Asegura que la imagen no se salga del contenedor */
+    display: block; /* Elimina cualquier espacio adicional alrededor de la imagen */
+}
+</style>
+<body>
+  <div class="container">
+    <img src="../../assets/images/franja.png" width="100%" height="6">
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-sm-6 col-md-6">
+        <a href="https://bancoprocredit.com.ec/">
+          <img src="../../assets/images/Logo-bancovertical.png" class="resized-image">
+        </a>
+      </div>
+      <div class="col-lg-3 switcher-lang">
+        <mat-form-field appearance="fill">
+          <mat-label *ngIf="isTranslated==false">{{ "general.espanol" | translate }} <img
+              src="../../assets/images/es.png" height="16" width="16" alt="es"></mat-label>
+          <mat-label *ngIf="isTranslated==true">{{ "general.ingles" | translate }} <img
+              src="../../assets/images/en-us.png" height="16" width="16" alt="es"></mat-label>
+          <mat-select>
+            <mat-option (click)="useLanguage('es')">
+              {{ "general.espanol" | translate }}<img src="../../assets/images/es.png" height="16" width="16" alt="es">
+            </mat-option>
+            <mat-option (click)="useLanguage('en')">
+              {{ "general.ingles" | translate }} <img src="../../assets/images/en-us.png" height="16" width="16"
+                alt="es">
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div>
+
+    <div class="container-fluid  div-principal">
+      <mat-tab-group #mattabgroup mat-align-tabs="center" style="overflow: initial;">
+        <mat-tab label="{{ 'educativo.matLabelTranslated' | translate }}" style="overflow: initial;">
+          <br><br>
+          <h2 class="titulo-simulador">{{ "educativo.title" | translate }}</h2>
+
+          <div class="row div-principal-2-credito">
+            <div class="col-md-6 div-lado-izq">
+              <label for="exampleInputEmail1" class="label-monto">
+                {{ 'general.monto' | translate }}
+              </label>
+              <div class="input-group margin-left-3">
+                <mat-slider thumbLabel [displayWith]="formatoMonto" (input)="onInputChangeMonto($event)" step="100"
+                  tickInterval="100" class="mat-slider" min="{{montoMinCreditoEducativo}}"
+                  max="{{montoMaxCreditoEducativo}}" [(ngModel)]="valorPrestamo" (ngModelChange)="simuladorEducativo()">
+                </mat-slider>
+                <input type="number" pattern="^[0-9]+" onkeypress="return event.charCode >= 48"
+                  class="form-control input-monto-tiempo" id="exampleInputEmail1"
+                  placeholder="{{ 'general.monto' | translate }}" min="{{montoMinCreditoEducativo}}"
+                  max="{{montoMaxCreditoEducativo}}" [(ngModel)]="valorPrestamo" name="valorPrestamo"
+                  (ngModelChange)="simuladorEducativo()" size=40>
+              </div>
+              <br>
+              <label for="exampleInputPassword1" class="label-plazo">
+                {{ 'general.plazo_meses' | translate }}
+              </label>
+              <div class="input-group margin-left-3">
+                <mat-slider thumbLabel [displayWith]="formatoTiempo" (input)="onInputChangeTiempo($event)"
+                  tickInterval="1" class="mat-slider" min="{{tiempoMinCreditoEducativo}}"
+                  max="{{tiempoMaxCreditoEducativo}}" [(ngModel)]="numeroCuotas" (ngModelChange)="simuladorEducativo()">
+                </mat-slider>
+                <input type="number" pattern="^[0-9]+" onkeypress="return event.charCode >= 48"
+                  class="input-monto-tiempo form-control " id="exampleInputPassword1" value="{{numeroCuotas}}"
+                  placeholder="{{ 'general.plazo' | translate }}" min="{{tiempoMinCreditoEducativo}}"
+                  max="{{tiempoMaxCreditoEducativo}}" [(ngModel)]="numeroCuotas" name="numeroCuotas"
+                  (ngModelChange)="simuladorEducativo()" size=40>
+              </div>
+              <br>
+              <label class="label-tabla-de">{{ 'general.tabla_amortizacion' | translate }}</label> <br>
+
+              <div class="button-group div-botones-francesa-alemana">
+                <button class="btn btn-light boton-simuladores btn-sf sf-francesa" (click)="verFrancesa()"
+                  *ngIf="botoncolorF==true">{{ 'general.francesa' | translate }}</button>
+                <button class="btn btn-light boton-simuladores bgf" (click)="verFrancesa()"
+                  *ngIf="botoncolorF==false">{{ 'general.francesa' | translate }}</button>
+                <button class="btn btn-light boton-simuladores btn-sa sa-alemana" (click)="verAlemana()"
+                  style="margin-left: 2%;" *ngIf="botoncolorA==true">{{ 'general.alemana' | translate }}</button>
+                <button class="btn btn-light boton-simuladores bga" (click)="verAlemana()" style="margin-left: 2%;"
+                  *ngIf="botoncolorA==false">{{ 'general.alemana' | translate }}</button>
+              </div>
+              <div class="div-bg-gray">
+                <br class="salto-linea">
+                <h2 class="h3-tasa-interes-efectiva">
+                  {{ 'general.tasa_interes_efectiva' | translate }} {{this.tasaEfectiva | percent: '1.2-2'}}</h2>
+                <h2 class="h3-tasa-interes">
+                  {{ 'general.tasa_interes' | translate }}</h2>
+                <div class="row div-interes-tasa">
+                  <div class="col-md-4 margin-left-3">
+                    <h1 class="h1-tasa-credito">
+                      {{tasaCreditoEducativo | number: '1.2-2'}} </h1>
+                  </div>
+                  <div class="col-md-8 div-porcentaje-anual-credito">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h1 class="h1-porcentaje">%</h1>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h1 class="h1-anual">{{ 'general.anual' | translate }}</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <br> -->
+                <div class="button-group div-tiempos-y-montos" style="background-color: #f4d900; ">
+                  <label class="label-limites-tiempos">{{ 'general.tiempo_minimo'
+                    | translate }}
+                    {{tiempoMinCreditoEducativo}} {{ 'general.meses' | translate }},
+                    {{ 'general.maximo' | translate }} {{tiempoMaxCreditoEducativo}} {{ 'general.meses' | translate
+                    }}</label>
+                  <label class="label-limites-montos">{{ 'general.monto_minimo' |
+                    translate }}
+                    ${{montoMinCreditoEducativo | number}}
+                    {{ 'general.monto_maximo' | translate }} ${{montoMaxCreditoEducativo | number}}
+                  </label>
+                </div>
+              </div>
+              <div class="button-group margin-left-3" *ngIf="amortizacionIA.is_visible || amortizacionF.is_visible">
+                <br>
+                <button class="btn btn-light boton-cerrar-tabla" style="background-color: #f4d900;"
+                  (click)="cerrarTablas()">
+                  {{ 'general.cerrar_tabla' | translate }}</button>
+              </div>
+            </div>
+            <div class="col-md-6 div-lado-derecho-credito">
+              <!-- <div class="container-fluid div-imagen-marco"> -->
+              <img src="../../assets/images/marcco_amarillo.png" class="div-imagen-marco"
+                style="position: absolute; margin-top: -35%; margin-left: -12%; width: 155%;">
+              <!-- </div> -->
+              <div class="row">
+                <div class="col-md-8 div-detalle-simulacion-credito" style="background-color: #f4d900;">
+                  <div *ngIf="alemana.is_visible" id="htmlData">
+                    <h3 class="h3-detalle-alemana">
+                      {{ 'general.detalle_s_alemana' | translate }}:</h3>
+                    <table width="100%" cellspacing="5px" cellpadding="5px" class="tabla-detalle-alemana">
+                      <tr>
+                        <th>{{ 'general.tasa_periodica' | translate }}:</th>
+                        <td class="txt-align-r">
+                          <input class="input-td" value="{{tasaInteresPeriodica | number:'1.0-2' }}%" readonly>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th> {{ 'general.seguro_desgravamen' | translate }}:</th>
+                        <td class="txt-align-r">
+                          <input value="{{porcentajeSD| number:'1.0-4'}}%" readonly class="input-td">
+                        </td>
+                      </tr>
+                      <tr>
+                        <th> {{ 'general.total_seguro' | translate }}:</th>
+                        <td class="txt-align-r">
+                          <input value="${{sumaSeguroDesgravamenA | number:'1.0-2'}}" readonly class="input-td">
+                        </td>
+                      </tr>
+                      <tr>
+                        <th> {{ 'general.liquido_recibir' | translate }}:</th>
+                        <td class="txt-align-r">
+                          <input value="${{liquidoRecibir | number:'1.0-2'}}" readonly class="input-td-2">
+                        </td>
+                      </tr>
+                      <!-- <div class="div-td" style="background-color: #fbcb0c;"> -->
+                      <tr style="background-color: #fbcb0c;">
+                        <th>{{ 'general.cuota_inicial' | translate }}:</th>
+                        <td class="txt-align-r">
+                          <input class="input-td-2 input-td-2-creditoA" value="${{cuotaInicial | number:'1.0-2'}}"
+                            readonly>
+                        </td>
+                      </tr>
+                      <!-- </div> -->
+                      <tr>
+                        <th class="th-total-interes">{{ 'general.total_interes_a_pagar' | translate }}:</th>
+                        <td class="th-total-interes txt-align-r">
+                          <input value="${{sumaIntereses | number:'1.0-2'}}" readonly class="input-td-2">
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div *ngIf="francesa.is_visible">
+
+                    <h3 class="h3-detalle-alemana">
+                      {{ 'general.detalle_simulacion_francesa' |
+                      translate }}:</h3>
+
+                    <table width="100%" cellspacing="5px" cellpadding="5px" class="tabla-detalle-alemana">
+                      <tr>
+                        <th>{{ 'general.tasa_periodica' | translate }}:</th>
+
+                        <td class="txt-align-r">
+                          <input class="input-td" value="{{tasaInteresPeriodica | number:'1.0-2' }}%" readonly>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th> {{ 'general.seguro_desgravamen' | translate }}:</th>
+                        <td class="txt-align-r">
+                          <input value="{{porcentajeSD| number:'1.0-4'}}%" readonly class="input-td">
+                        </td>
+                      </tr>
+                      <tr>
+                        <th> {{ 'general.total_seguro' | translate }}:</th>
+                        <td class="txt-align-r">
+                          <input value="${{sumaSeguroDesgravamenF | number:'1.0-2'}}" readonly class="input-td">
+                        </td>
+                      </tr>
+                      <tr>
+                        <th> {{ 'general.liquido_recibir' | translate }}:</th>
+                        <td class="txt-align-r">
+                          <input value="${{liquidoRecibir | number:'1.0-2'}}" readonly class="input-td-2">
+                        </td>
+                      </tr>
+                      <!-- <div class="div-td-2" style="background-color: #fbcb0c ; "> -->
+                      <tr style="background-color: #fbcb0c;">
+                        <th> *{{ 'general.cuota_a_pagar' | translate }}:</th>
+                        <td class="txt-align-r">
+                          <input class="input-td-2 input-td-2-creditof" value="${{cuotaPagarF | number:'1.0-2'}}"
+                            readonly>
+                        </td>
+                      </tr>
+                      <!-- </div> -->
+                      <tr>
+                        <th class="th-total-interes">{{ 'general.total_interes_a_pagar' | translate }}:</th>
+                        <td class="th-total-interes txt-align-r ">
+                          <input class="input-td-2" value="${{sumaInteresesF | number:'1.0-2'}}" readonly>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-4 div-img-detalle" style=" background-color: #f4d900;
+                /* background-image: url('../../assets/images/marco_amarillo.png'); */
+                ">
+                  <img alt="ImgImgImg" src="../../assets/images/img-educativo.jpg" width="500" height="600"
+                    class="img-detalle" />
+                </div>
+              </div>
+              <div class="div-solca">
+                <h3 class="h3-solca">*{{ 'general.todos_los_creditos' | translate }}</h3>
+              </div>
+              <div class="div-flechas-descargar">
+                <img src="../../assets/images/flechas_amarillas.PNG" width="10%" height="15" class="img-flechas">
+                <button class="btn1 third" *ngIf="isTranslated==false" (click)="generatePDF()">{{ 'general.descargar' |
+                  translate }}</button>
+                <button class="btn1 third" *ngIf="isTranslated==true" (click)="generatePDF_English()">{{
+                  'general.descargar' |
+                  translate }}</button>
+              </div>
+            </div>
+
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  <div class="row">
+    <div class="div-tabla-francesa">
+      <div *ngIf="amortizacionF.is_visible" style="overflow: xscroll;">
+        <div style="text-align: center;">
+          <h2>{{ 'general.tabla_amortizacion_francesa' | translate }}</h2>
+        </div>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>
+                #{{ 'general.cuota' | translate }}
+              </th>
+              <th>
+                {{ 'general.interes_periodo' | translate }}
+              </th>
+              <th>
+                {{ 'general.capital_amortizado' | translate }}
+              </th>
+              <th>
+                {{ 'general.seguro' | translate }}
+              </th>
+              <th>
+                {{ 'general.cuota_a_pagar' | translate }}
+              </th>
+              <th>
+                {{ 'general.saldo_remanente' | translate }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of dataFrances">
+              <td>{{data.numeroCuota}}</td>
+              <td>${{data.interesPeriodo | number:'1.0-2'}}</td>
+              <td>${{data.capitalAmortizado | number:'1.0-2'}}</td>
+              <td>${{data.seguro | number:'1.0-2'}}</td>
+              <td>${{data.cuotaPagar | number:'1.0-2'}}</td>
+              <td>${{data.saldoRemanente | number:'1.0-2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="amortizacionIA.is_visible" style="overflow: xscroll;">
+        <div style="text-align: center;">
+          <h2>{{ 'general.tabla_amortizacion_alemana' | translate }}</h2>
+
+        </div>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>
+                #{{ 'general.cuota' | translate }}
+              </th>
+              <th>
+                {{ 'general.interes_periodo' | translate }}
+              </th>
+              <th>
+                {{ 'general.capital_amortizado' | translate }}
+              </th>
+              <th>
+                {{ 'general.seguro' | translate }}
+              </th>
+              <th>
+                {{ 'general.cuota_a_pagar' | translate }}
+              </th>
+              <th>
+                {{ 'general.saldo_remanente' | translate }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of dataAleman">
+              <td>{{data.numeroCuota}}</td>
+              <td>${{data.interesPeriodo | number:'1.0-2'}}</td>
+              <td>${{data.capitalAmortizado | number:'1.0-2'}}</td>
+              <td>${{data.seguro | number:'1.0-2'}}</td>
+              <td>${{data.cuotaPagar | number:'1.0-2'}}</td>
+              <td>${{data.saldoRemanente | number:'1.0-2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div>
+      <br class="salto-linea">
+      <div class="form-group" style="text-align: center;">
+
+        <button class="boton-lq-cliente third1" *ngIf="crud_operation.is_visible==false" (click)="new()">!{{
+          'general.lo_quiero' | translate }}!</button>
+        <button *ngIf="alemana.is_visible && botonSimulacion2.is_visible" class="boton-sd third2" (click)="vetTablaIA()"
+          style="">{{ 'general.simulacion_detallada' | translate }}
+        </button>
+        <button *ngIf="francesa.is_visible && botonSimulacion2.is_visible" class="boton-sd third2"
+          (click)="vetTablaFrancesa()">{{ 'general.simulacion_detallada' | translate }}
+        </button>
+        <button *ngIf="botonSimulacion.is_visible" class="btn btn-light boton-lq-cliente "
+          style="background-color: #291d19;  color:white" (click)="cerrarTablas()">
+          {{ 'general.cerrar_tabla' | translate }}</button>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="crud_operation.is_visible" style="text-align: center;">
+      <div id="hubspotForm"></div>
+      <button class="btn btn-light boton-cancelar" (click)="crud_operation.is_visible=false">{{ 'general.cancelar' |
+        translate }}</button>
+    </div>
+  </div>
+
+</body>
+<footer>
+  <div class="container">
+    <img src="../../assets/images/franja.png" width="100%" height="6">
+  </div>
+</footer>
+
+</html>

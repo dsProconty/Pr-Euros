@@ -1,0 +1,269 @@
+<!-- Franja superior -->
+<div class="franja-top">
+  <img src="../../assets/images/franja.png" width="100%" height="6" alt="">
+</div>
+
+<!-- Header -->
+<header class="admin-header">
+  <a href="https://bancoprocredit.com.ec/">
+    <img src="../../assets/images/Logo-bancovertical.png" class="logo-banco" alt="Banco ProCredit">
+  </a>
+  <div class="admin-user-bar" *ngIf="currentUser">
+    <div class="admin-user-info">
+      <span class="admin-user-icon">&#9679;</span>
+      <span class="admin-user-name">{{ currentUser.name }}</span>
+      <span class="admin-user-role">
+        <ng-container [ngSwitch]="currentUser.role_id">
+          <span *ngSwitchCase="1">Cotizador EUR/USD</span>
+          <span *ngSwitchCase="2">Simuladores de producto</span>
+          <span *ngSwitchCase="3">Administrador general</span>
+        </ng-container>
+      </span>
+    </div>
+    <button class="btn-logout" type="button" (click)="logout()">
+      Cerrar sesión
+    </button>
+  </div>
+</header>
+
+<!-- Contenido principal -->
+<main class="admin-main">
+
+  <h1 class="admin-title">Administración de tasas</h1>
+
+  <!-- ── Tasas generales ── -->
+  <section class="admin-section">
+    <h2 class="section-title">Tasas generales</h2>
+    <div class="rates-loading" *ngIf="isLoading">Cargando tasas…</div>
+
+    <div class="rates-grid" *ngIf="!isLoading">
+      <div class="rate-card" *ngFor="let row of visibleRows">
+        <div class="rate-card-header">
+          <span class="rate-card-categoria">{{ row.categoria }}</span>
+        </div>
+        <div class="rate-card-body">
+          <p class="rate-card-simulador">{{ row.simulador }}</p>
+          <p class="rate-card-tasa">
+            <span *ngIf="!row.isLoading">{{ formatTruncated(row.tasa, row.decimals || 2) }}<small>{{ row.unit || '%' }}</small></span>
+            <span *ngIf="row.isLoading" class="rate-card-loading">Cargando…</span>
+          </p>
+        </div>
+        <div class="rate-card-footer">
+          <button class="btn-accion btn-editar" type="button"
+            (click)="openEditModal(row)" [disabled]="!canEditRow(row)">
+            Editar tasa
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Rangos FlexSave PN / PJ ── -->
+  <section class="admin-section" *ngIf="canEditFlexRanges">
+    <h2 class="section-title">FlexSave — Tasas por rango (PN / PJ)</h2>
+    <p class="section-hint">Edita, elimina o agrega rangos de monto para Persona Natural y Persona Jurídica.</p>
+
+    <div class="rates-loading" *ngIf="isLoadingFlexRanges">Cargando rangos…</div>
+
+    <div class="flex-tables-wrap" *ngIf="!isLoadingFlexRanges">
+
+      <!-- PN -->
+      <div class="flex-table-block">
+        <div class="flex-table-header">
+          <h3 class="flex-table-title">Persona Natural <span>(PN)</span></h3>
+          <button class="btn-icon-agregar" type="button"
+            (click)="openFlexCreateModal('PN')"
+            matTooltip="Agregar rango PN" matTooltipPosition="left">
+            <!-- plus -->
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Agregar rango
+          </button>
+        </div>
+        <table class="rates-table">
+          <thead>
+            <tr>
+              <th>Rango</th>
+              <th>Monto mín.</th>
+              <th>Monto máx.</th>
+              <th>Tasa (%)</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of flexRangesPN">
+              <td>{{ r.label }}</td>
+              <td>{{ r.min_amount | number }}</td>
+              <td>{{ r.max_amount !== null ? (r.max_amount | number) : '—' }}</td>
+              <td><strong>{{ formatTruncated(r.rate, 2) }}%</strong></td>
+              <td class="acciones-cell">
+                <!-- Editar -->
+                <button class="btn-icon btn-icon-edit" type="button"
+                  (click)="openFlexEditModal(r)"
+                  matTooltip="Editar rango" matTooltipPosition="above">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <!-- Eliminar -->
+                <button class="btn-icon btn-icon-delete" type="button"
+                  (click)="confirmDeleteFlex(r.id, r.label)"
+                  matTooltip="Eliminar rango" matTooltipPosition="above">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="flexRangesPN.length === 0">
+              <td colspan="5" class="empty-row">Sin rangos. Agrega uno.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- PJ -->
+      <div class="flex-table-block">
+        <div class="flex-table-header">
+          <h3 class="flex-table-title">Persona Jurídica <span>(PJ)</span></h3>
+          <button class="btn-icon-agregar" type="button"
+            (click)="openFlexCreateModal('PJ')"
+            matTooltip="Agregar rango PJ" matTooltipPosition="left">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Agregar rango
+          </button>
+        </div>
+        <table class="rates-table">
+          <thead>
+            <tr>
+              <th>Rango</th>
+              <th>Monto mín.</th>
+              <th>Monto máx.</th>
+              <th>Tasa (%)</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of flexRangesPJ">
+              <td>{{ r.label }}</td>
+              <td>{{ r.min_amount | number }}</td>
+              <td>{{ r.max_amount !== null ? (r.max_amount | number) : '—' }}</td>
+              <td><strong>{{ formatTruncated(r.rate, 2) }}%</strong></td>
+              <td class="acciones-cell">
+                <button class="btn-icon btn-icon-edit" type="button"
+                  (click)="openFlexEditModal(r)"
+                  matTooltip="Editar rango" matTooltipPosition="above">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <button class="btn-icon btn-icon-delete" type="button"
+                  (click)="confirmDeleteFlex(r.id, r.label)"
+                  matTooltip="Eliminar rango" matTooltipPosition="above">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="flexRangesPJ.length === 0">
+              <td colspan="5" class="empty-row">Sin rangos. Agrega uno.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- Franja inferior -->
+<div class="franja-top">
+  <img src="../../assets/images/franja.png" width="100%" height="6" alt="">
+</div>
+
+<!-- ── Modal confirmar eliminación ── -->
+<div class="modal-overlay" *ngIf="confirmDeleteId !== null" (click)="cancelDeleteFlex()">
+  <div class="modal-card modal-card-confirm" (click)="$event.stopPropagation()">
+    <div class="modal-card-accent modal-card-accent-danger"></div>
+    <div class="modal-card-body">
+      <div class="confirm-icon-wrap">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c41230" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+          <path d="M10 11v6"/><path d="M14 11v6"/>
+          <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+        </svg>
+      </div>
+      <h3 class="modal-card-title" style="justify-content:center;">Eliminar rango</h3>
+      <p class="confirm-dialog-text">
+        ¿Estás seguro de que deseas eliminar el rango<br>
+        <strong>"{{ confirmDeleteLabel }}"</strong>?<br>
+        <span class="confirm-dialog-warning">Esta acción no se puede deshacer.</span>
+      </p>
+      <div class="modal-card-actions">
+        <button class="btn-accion btn-cancelar" type="button"
+          (click)="cancelDeleteFlex()" [disabled]="isDeletingFlex">
+          Cancelar
+        </button>
+        <button class="btn-accion btn-eliminar-dialog" type="button"
+          (click)="deleteFlexRange()" [disabled]="isDeletingFlex">
+          <span *ngIf="!isDeletingFlex">Sí, eliminar</span>
+          <span *ngIf="isDeletingFlex" style="display:flex;align-items:center;gap:8px;">
+            <span class="spinner-sm"></span> Eliminando…
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal tasa general ── -->
+<div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-card-accent"></div>
+    <div class="modal-card-body">
+      <h3 class="modal-card-title">Editar tasa</h3>
+      <p class="modal-card-subtitle">{{ selectedRow?.simulador }}</p>
+      <label class="campo-label">Nueva tasa (%)</label>
+      <input class="campo-input" type="number" min="0" step="0.000001" [(ngModel)]="modalRate" autofocus>
+      <div class="modal-card-actions">
+        <button class="btn-accion btn-cancelar" type="button" (click)="closeModal()" [disabled]="isSaving">Cancelar</button>
+        <button class="btn-accion btn-guardar" type="button" (click)="saveRate()" [disabled]="isSaving">
+          {{ isSaving ? 'Guardando…' : 'Guardar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal crear / editar rango FlexSave ── -->
+<div class="modal-overlay" *ngIf="isFlexModalOpen" (click)="closeFlexModal()">
+  <div class="modal-card modal-card-wide" (click)="$event.stopPropagation()">
+    <div class="modal-card-accent"></div>
+    <div class="modal-card-body">
+      <h3 class="modal-card-title">
+        {{ isFlexNewMode ? 'Nuevo rango' : 'Editar rango' }}
+        <span class="modal-badge">{{ flexForm.client_type }}</span>
+      </h3>
+
+      <label class="campo-label">Etiqueta del rango</label>
+      <input class="campo-input" type="text" placeholder="Ej: 10,000 &lt;= X &lt; 50,000"
+        [(ngModel)]="flexForm.label">
+
+      <div class="campo-row">
+        <div class="campo-col">
+          <label class="campo-label">Monto mínimo ($)</label>
+          <input class="campo-input" type="number" min="0" step="1" [(ngModel)]="flexForm.min_amount">
+        </div>
+        <div class="campo-col">
+          <label class="campo-label">Monto máximo ($) <span class="campo-hint">— vacío = sin límite</span></label>
+          <input class="campo-input" type="number" min="0" step="1"
+            [(ngModel)]="flexForm.max_amount" placeholder="Sin límite">
+        </div>
+      </div>
+
+      <label class="campo-label">Tasa (%)</label>
+      <input class="campo-input" type="number" min="0" step="0.0001" [(ngModel)]="flexForm.rate">
+
+      <div class="modal-card-actions">
+        <button class="btn-accion btn-cancelar" type="button" (click)="closeFlexModal()" [disabled]="isSavingFlex">Cancelar</button>
+        <button class="btn-accion btn-guardar" type="button" (click)="saveFlexRange()" [disabled]="isSavingFlex">
+          {{ isSavingFlex ? 'Guardando…' : 'Guardar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

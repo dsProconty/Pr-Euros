@@ -1,0 +1,563 @@
+/* ── Layout general ── */
+.franja-top { display: block; }
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.logo-banco {
+  height: 48px;
+  width: auto;
+}
+
+.admin-user-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f9f9f9;
+  border: 1px solid #e2e2e2;
+  border-radius: 24px;
+  padding: 6px 16px;
+}
+
+.admin-user-icon {
+  color: #2e7d32;
+  font-size: 10px;
+}
+
+.admin-user-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #222;
+}
+
+.admin-user-role {
+  font-size: 12px;
+  color: #888;
+  padding-left: 6px;
+  border-left: 1px solid #ddd;
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1px solid #DA2128;
+  color: #DA2128;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-logout:hover {
+  background: #DA2128;
+  color: #fff;
+}
+
+.admin-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+
+.admin-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #DA2128;
+}
+
+/* ── Secciones ── */
+.admin-section {
+  margin-bottom: 48px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.section-hint {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 16px;
+}
+
+/* ── Cards de tasas generales ── */
+.rates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.rate-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+}
+.rate-card:hover {
+  box-shadow: 0 4px 16px rgba(196,18,48,0.12);
+}
+
+.rate-card-header {
+  background: #DA2128;
+  padding: 8px 14px;
+}
+
+.rate-card-categoria {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rate-card-body {
+  padding: 14px 14px 8px;
+  flex: 1;
+}
+
+.rate-card-simulador {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px;
+}
+
+.rate-card-tasa {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #DA2128;
+  margin: 0;
+  line-height: 1;
+}
+
+.rate-card-tasa small {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+.rate-card-loading {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.rate-card-footer {
+  padding: 10px 14px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* ── Tablas FlexSave ── */
+.flex-tables-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .flex-tables-wrap { grid-template-columns: 1fr; }
+}
+
+.flex-table-block {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.flex-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #fafafa;
+  border-bottom: 2px solid #DA2128;
+}
+
+.flex-table-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #DA2128;
+  margin: 0;
+}
+
+.flex-table-title span {
+  font-weight: 400;
+  color: #888;
+  font-size: 13px;
+}
+
+.rates-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.rates-table th {
+  background: #DA2128;
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.rates-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+  color: #333;
+}
+
+.rates-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rates-table tbody tr:hover {
+  background: #fff7f8;
+}
+
+.acciones-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+.confirm-text {
+  font-size: 11px;
+  color: #DA2128;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── Dialog confirmar eliminación ── */
+.modal-card-confirm {
+  max-width: 360px;
+  text-align: center;
+}
+
+.modal-card-accent-danger {
+  background: linear-gradient(90deg, #DA2128 0%, #e8213e 100%);
+}
+
+.confirm-icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0 16px;
+  background: rgba(196,18,48,0.08);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  align-items: center;
+  margin: 8px auto 16px;
+}
+
+.confirm-dialog-text {
+  color: #444;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 8px;
+}
+
+.confirm-dialog-warning {
+  font-size: 12px;
+  color: #999;
+}
+
+.btn-eliminar-dialog {
+  background: #DA2128;
+  color: #fff;
+  min-width: 110px;
+}
+.btn-eliminar-dialog:hover:not(:disabled) { background: #a90f29; }
+.btn-eliminar-dialog:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.spinner-sm {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ── Botón icono genérico ── */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+.btn-icon:hover:not(:disabled) { transform: translateY(-1px); }
+.btn-icon:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-icon-edit {
+  background: rgba(196, 18, 48, 0.1);
+  color: #DA2128;
+}
+.btn-icon-edit:hover:not(:disabled) {
+  background: #DA2128;
+  color: #fff;
+}
+
+.btn-icon-delete {
+  background: rgba(100, 20, 30, 0.08);
+  color: #7a1020;
+}
+.btn-icon-delete:hover:not(:disabled) {
+  background: #7a1020;
+  color: #fff;
+}
+
+.btn-icon-confirm {
+  background: rgba(30, 140, 60, 0.1);
+  color: #1e8c3c;
+}
+.btn-icon-confirm:hover:not(:disabled) {
+  background: #1e8c3c;
+  color: #fff;
+}
+
+.btn-icon-cancel {
+  background: rgba(0,0,0,0.06);
+  color: #555;
+}
+.btn-icon-cancel:hover:not(:disabled) {
+  background: rgba(0,0,0,0.14);
+  color: #222;
+}
+
+/* ── Botón agregar con icono ── */
+.btn-icon-agregar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #DA2128;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+.btn-icon-agregar:hover { background: #a90f29; transform: translateY(-1px); }
+.btn-icon-agregar:active { transform: translateY(0); }
+
+.empty-row {
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+  padding: 20px !important;
+}
+
+.rates-loading {
+  color: #999;
+  font-size: 14px;
+  padding: 16px 0;
+}
+
+/* ── Botones de acción ── */
+.btn-accion {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.btn-accion.btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.btn-accion:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-editar {
+  background: #DA2128;
+  color: #fff;
+}
+.btn-editar:hover:not(:disabled) { opacity: 0.85; }
+
+.btn-eliminar {
+  background: #6c1a27;
+  color: #fff;
+}
+.btn-eliminar:hover:not(:disabled) { background: #500f1c; }
+
+.btn-agregar {
+  background: #DA2128;
+  color: #fff;
+}
+.btn-agregar:hover:not(:disabled) { opacity: 0.85; }
+
+.btn-guardar {
+  background: #DA2128;
+  color: #fff;
+  min-width: 100px;
+}
+.btn-guardar:hover:not(:disabled) { opacity: 0.85; }
+
+.btn-cancelar {
+  background: #f0f0f0;
+  color: #444;
+}
+.btn-cancelar:hover:not(:disabled) { background: #e0e0e0; }
+
+/* ── Modales ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-card {
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+  animation: modal-in 0.18s ease;
+}
+
+.modal-card-wide {
+  max-width: 560px;
+}
+
+@keyframes modal-in {
+  from { transform: translateY(-16px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+.modal-card-accent {
+  height: 6px;
+  background: #DA2128;
+}
+
+.modal-card-body {
+  padding: 24px;
+}
+
+.modal-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-badge {
+  background: #DA2128;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.modal-card-subtitle {
+  color: #777;
+  font-size: 13px;
+  margin: 0 0 20px;
+}
+
+.modal-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+/* ── Campos del formulario ── */
+.campo-label {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 6px;
+  margin-top: 16px;
+}
+
+.campo-label:first-of-type {
+  margin-top: 0;
+}
+
+.campo-hint {
+  font-weight: 400;
+  color: #aaa;
+  font-size: 11px;
+}
+
+.campo-input {
+  width: 100%;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #222;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.campo-input:focus {
+  outline: none;
+  border-color: #DA2128;
+}
+
+.campo-row {
+  display: flex;
+  gap: 16px;
+}
+
+.campo-col {
+  flex: 1;
+}

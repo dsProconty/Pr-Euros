@@ -1,0 +1,93 @@
+
+
+ <!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Source code generated using layoutit.com">
+  <meta name="author" content="LayoutIt!">
+  <meta name="robots" content="noindex">
+</head>
+
+<body>
+  <div class="container">
+    <img src="../../assets/images/franja.png" width="100%" height="6">
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <img src="../../assets/images/logo.png" width="30%" height="80%">
+
+      </div>
+      <div class="col-lg-3 switcher-lang">
+        <mat-form-field appearance="fill">
+          <mat-label *ngIf="isTranslated==false">
+            {{ "general.espanol" | translate }} 
+            <img
+              src="../../assets/images/es.png" height="16" width="16" alt="es"></mat-label>
+          <mat-label *ngIf="isTranslated==true">
+            {{ "general.ingles" | translate }} 
+            <img
+              src="../../assets/images/en-us.png" height="16" width="16" alt="es"></mat-label>
+
+          <mat-select>
+            <mat-option (click)="useLanguage('es')">
+              {{ "general.espanol" | translate }}
+              <img src="../../assets/images/es.png" height="16" width="16" alt="es">
+            </mat-option>
+            <mat-option (click)="useLanguage('en')">
+              {{ "general.ingles" | translate }} <img src="../../assets/images/en-us.png" height="16" width="16"
+                alt="es">
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="container-fluid  div-principal">
+      <section>
+
+        <div class="d-flex justify-content-between">
+          <h4>
+            {{ "general.lista_tasas" | translate }}
+          </h4>
+          <a routerLink="/tax/create" class="btn btn-success"> {{ "general.crear" | translate }}</a>
+        </div>
+    
+        <br>
+        
+        <table class="table ">
+          <tr>
+            <th>ID</th>
+            <th> {{ "general.tasa" | translate }}</th>
+            <th> {{ "general.descripcion" | translate }}</th>
+            <th> {{ "general.fecha" | translate }}</th>
+
+            <th width="220px">{{ "general.accion" | translate }}</th>
+          </tr>
+          <tr *ngFor="let tax of taxes">
+            <td>{{ tax.id }}</td>
+            <td>{{ tax.tax }}</td>
+            <td>{{ tax.description }}</td>
+            <td>{{ tax.created_at }}</td>
+
+            <td>
+              <a href="#" [routerLink]="['/tax/', 'edit', tax.id  ]" class="btn btn-primary">Edit</a>
+              <button type="button" (click)="deleteTax(tax.id)" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </table>
+     </section>
+    </div>
+  </div>
+</body>
+
+<footer>
+  <div class="container">
+    <img src="../../assets/images/franja.png" width="100%" height="6">
+  </div>
+</footer>
+
+</html>

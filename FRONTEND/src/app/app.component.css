@@ -1,0 +1,41 @@
+@font-face {
+  font-family: amaranth-regular;
+  src:url(../assets/Amaranth-Regular.ttf)
+}
+
+@font-face {
+  font-family: amaranth-bold;
+  src:url(../assets/Amaranth-Bold.ttf)
+}
+@font-face {
+  font-family: amaranth-bolditalic;
+  src:url(../assets/Amaranth-BoldItalic.ttf)
+}
+@font-face {
+  font-family: amaranth-italic;
+  src:url(../assets/Amaranth-Italic.ttf)
+}
+.container-responsive{
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 2000px) {
+  .container-responsive{
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+
+
+  }
+
+}
+
+@media only screen and (max-width : 2000px) {
+  .container-responsive{
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+
+
+  }
+
+ }
